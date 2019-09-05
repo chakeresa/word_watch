@@ -2,8 +2,6 @@ import $ from 'jquery';
 let domain = 'http://localhost:3000';
 
 const getTopWord = () => {
-  // $('#top-word').html('');
-
   fetch(`${domain}/api/v1/top_word`)
     .then(response => response.json())
     .then(topWordApiResult => displayTopWordResult(topWordApiResult))
