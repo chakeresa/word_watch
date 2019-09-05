@@ -21,16 +21,34 @@ const displayTopWordResult = (topWordApiResult) => {
 
 const addNewText = (textInput) => {
   console.log("textInput = " + textInput);
-  fetch(`${domain}/api/v1/words`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ word: { value: textInput } })
-  })
-    .then(done => {
-      console.log(`post request for ${textInput} made`);
-      getTopWord();
-    })
-    .catch(error => console.log(error));
+  let wordsAry = textInput.replace(/[^0-9a-z ]/gi, '').split(" ")
+  console.log("wordsAry = " + wordsAry)
+
+  var postAllWords = new Promise((resolve, reject) => {
+    for (const word of wordsAry) {
+      fetch(`${domain}/api/v1/words`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ word: { value: word } })
+      }).then(() => resolve())
+    }
+  });
+
+  postAllWords.then(() => {
+    console.log(`all post requests for ${textInput} made`);
+    getTopWord();
+  });
+
+  // fetch(`${domain}/api/v1/words`, {
+  //   method: 'POST',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify({ word: { value: textInput } })
+  // })
+  //   .then(done => {
+  //     console.log(`post request for ${textInput} made`);
+  //     getTopWord();
+  //   })
+  //   .catch(error => console.log(error));
 };
 
 $(document).ready(() => {
