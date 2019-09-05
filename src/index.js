@@ -10,13 +10,17 @@ const getTopWord = () => {
 };
 
 const displayTopWordResult = (topWordApiResult) => {
-  $('#top-word-result').html('');
-
+  $('#top-word').html('Top word from Word Watch API:');
+  
   $('#top-word').append(`
-  <h5 id="top-word-result">
-    ${Object.keys(topWordApiResult.word)} (${Object.values(topWordApiResult.word)} results)
-  </h5>
-`);
+    "${Object.keys(topWordApiResult.word)}"
+  `);
+  
+  $('#word-count').html('');
+
+  $('#word-count').append(`
+    <p>Frequency = ${Object.values(topWordApiResult.word)}</p>
+  `);
 };
 
 const addNewText = (textInput) => {
