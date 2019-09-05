@@ -1,5 +1,6 @@
 import $ from 'jquery';
-let domain = 'http://localhost:3000';
+// let domain = 'http://localhost:3000';
+let domain = 'https://wordwatch-api.herokuapp.com';
 
 const getTopWord = () => {
   console.log('fetching latest top word')
