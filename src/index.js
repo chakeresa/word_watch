@@ -12,7 +12,7 @@ const getTopWord = () => {
 
 const displayTopWordResult = (topWordApiResult) => {
   $('#top-word').html('Top word from Word Watch API:');
-  
+
   $('#top-word').append(`
     "${Object.keys(topWordApiResult.word)}"
   `);
