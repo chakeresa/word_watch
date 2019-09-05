@@ -9,10 +9,9 @@ const getTopWord = () => {
 };
 
 const displayTopWordResult = (topWordApiResult) => {
-  console.log("Object.keys(topWordApiResult.word) = " + Object.keys(topWordApiResult.word));
   $('#top-word').append(`
   <h5 id="top-word-result">
-    ${Object.keys(topWordApiResult.word)}
+    ${Object.keys(topWordApiResult.word)} (${Object.values(topWordApiResult.word)} results)
   </h5>
 `);
 };
