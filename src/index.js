@@ -2,6 +2,7 @@ import $ from 'jquery';
 let domain = 'http://localhost:3000';
 
 const getTopWord = () => {
+  console.log('fetching latest top word')
   fetch(`${domain}/api/v1/top_word`)
     .then(response => response.json())
     .then(topWordApiResult => displayTopWordResult(topWordApiResult))
@@ -24,7 +25,7 @@ const addNewText = (textInput) => {
     body: JSON.stringify({ word: { value: textInput } })
   })
     .then(done => {
-      console.log("post request made");
+      console.log(`post request for ${textInput} made`);
       getTopWord();
     })
     .catch(error => console.log(error));
@@ -35,7 +36,7 @@ $(document).ready(() => {
 
   $('#break-down-button').on('click', () => {
     event.preventDefault(); //don't do a post request automatically
-    console.log("text input = " + $("textarea#text-input").value)
-    // addNewText($("textarea#text-input").value);
+    let textInput = $("textarea#text-input").val()
+    addNewText(textInput);
   });
 })
